@@ -61,9 +61,12 @@ export class PaymentService {
       where: { orderId },
       include: [{ model: MealCategory }],
     });
+    console.log(orderItems);
     let total = 0;
     for (const item of orderItems) {
       const price = Number(item.mealCategory?.payment || 0);
+      console.log(price);
+      console.log(item.mealCategory.payment);
       total += price * item.quantity;
     }
     return total;
